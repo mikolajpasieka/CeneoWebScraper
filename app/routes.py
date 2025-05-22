@@ -5,8 +5,12 @@ from app.models.product import Product
 @app.route("/")
 def index():
     return render_template("index.html")
+def index():
+    return render_template("index.html")
 
 @app.route("/extract")
+def display_form():
+    return render_template("extract.html")
 def display_form():
     return render_template("extract.html")
 
@@ -22,12 +26,18 @@ def extract():
 @app.route("/products")
 def products():
     return render_template("products.html")
+def products():
+    return render_template("products.html")
 
 @app.route("/product/<product_id>")
 def product(product_id):
     return render_template("product.html", product_id=product_id)
+def product(product_id):
+    return render_template("product.html", product_id=product_id)
 
 @app.route("/charts/<product_id>")
+def charts(product_id):
+    return render_template("charts.html", product_id=product_id)
 def charts(product_id):
     return render_template("charts.html", product_id=product_id)
 

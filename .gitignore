@@ -174,5 +174,5 @@ cython_debug/
 .pypirc
 
 # Ceneo Web Scraper
-CeneoWebScraper/app/data
+app/data
 config.py
