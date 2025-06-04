@@ -1,6 +1,8 @@
 from flask import render_template, redirect, url_for, request
 from app import app
 from app.models.product import Product
+from app.forms import ProductForm
+import os
 
 @app.route("/")
 def index():
@@ -8,19 +10,29 @@ def index():
 
 @app.route("/extract")
 def display_form():
-    return render_template("extract.html")
+    form = ProductForm(request.form)
+
+    return render_template("extract.html", form = form)
 
 @app.route("/extract", methods=['POST'])
 def extract():
-    product_id=request.form.get("product_id")
-    product = Product(product_id)
-    product.extract_reviews().extract_name().calculate_stats()
-    product.export_reviews()
-    product.export_info()
-    return redirect(url_for('product', product_id=product_id))
+    form = ProductForm(request.form)
+    if form.validate():
+        product_id=request.form.get("product_id")
+        product = Product(product_id)
+        product.extract_reviews().extract_name().calculate_stats()
+        product.export_reviews()
+        product.export_info()
+        return redirect(url_for('product', product_id=product_id))
+    else:
+        return render_template("extract.html", form = form)
 
 @app.route("/products")
 def products():
+    product_files = os.listdir("./app/data/products") 
+    products = []
+    for filename in product_files:
+        with open(f"")
     return render_template("products.html")
 
 @app.route("/product/<product_id>")
