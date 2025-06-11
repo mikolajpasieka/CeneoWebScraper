@@ -63,6 +63,13 @@ table, th, td {
 }
 
 footer {
-
+  position: fixed;
+  bottom: 0;
+  right:0;
+  left:0;
+  text-align: center;
+  background-color: rgb(169, 170, 170);
 }
+
+
 
